@@ -138,16 +138,8 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="167dp"
+                android:layout_height="match_parent"
                 android:gravity="center">
-
-                <Button
-                    android:id="@+id/restartGameBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25px"
-                    android:text="Restart"
-                    app:cornerRadius="50px" />
 
             </TableRow>
 
@@ -158,6 +150,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -165,7 +158,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="X Wins: 0"
+                        android:text="X's score: 0"
                         android:textSize="24sp" />
 
                     <TextView
@@ -174,8 +167,24 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="25px"
                         android:gravity="center"
-                        android:text="O Wins: 0"
+                        android:text="O's score: 0"
                         android:textSize="24sp" />
+
+                    <Button
+                        android:id="@+id/resetCounter"
+                        android:layout_width="243dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25px"
+                        android:text="Reset Counter"
+                        app:cornerRadius="50px" />
+
+                    <Button
+                        android:id="@+id/restartGameBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25px"
+                        android:text="Restart Game"
+                        app:cornerRadius="50px" />
 
                 </LinearLayout>
             </TableRow>

@@ -1,6 +1,12 @@
 package com.example.tictactoe
 
+import android.annotation.SuppressLint
+
 class TicTacToeModel {
+
+    var xWinCounter = 0
+    var oWinCounter = 0
+    var counterIsLocked = false
 
     private var board: Array<Array<Mark>> = Array(NUM_ROWS) { Array(NUM_COL) { Mark.MARK_NONE } }
     var gameState: GameState = GameState.X_TURN
@@ -49,8 +55,6 @@ class TicTacToeModel {
         if (row !in 0 until NUM_ROWS || col !in 0 until NUM_COL || board[row][col] != Mark.MARK_NONE) {
             return
         }
-
-        println(gameState)
 
         if (gameState == GameState.X_TURN) {
             board[row][col] = Mark.MARK_X
@@ -137,5 +141,27 @@ class TicTacToeModel {
             }
         }
         return true
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun checkForState(): Array<String>{
+        if (gameState.toString() == "X_WINS") {
+            if(!counterIsLocked){
+                counterIsLocked = true
+                xWinCounter++
+                return arrayOf(gameState.toString(), xWinCounter.toString())
+            }
+        }else if(gameState.toString() == "O_WINS") {
+            if (!counterIsLocked){
+                counterIsLocked = true
+                oWinCounter++
+                return arrayOf(gameState.toString(), oWinCounter.toString())
+            }
+        }else if(gameState.toString() == "TIE_GAME"){
+            return arrayOf(gameState.toString(), "")
+        }
+        println("xWIn $xWinCounter")
+        println("oWIn $oWinCounter")
+        return arrayOf("")
     }
 }

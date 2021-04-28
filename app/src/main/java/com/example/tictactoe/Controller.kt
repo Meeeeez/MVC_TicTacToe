@@ -11,10 +11,7 @@ import kotlinx.android.synthetic.main.view.*
 class MainActivity : AppCompatActivity() {
 
     val model = TicTacToeModel()
-    var xWinCounter = 1
-    var oWinCounter = 1
-    var counterIsLocked = false
-
+    var resetted = false
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +82,6 @@ class MainActivity : AppCompatActivity() {
 
         restartGameBtn.setOnClickListener {
             model.resetGame()
-
             field1.text = ""
             field2.text = ""
             field3.text = ""
@@ -95,7 +91,16 @@ class MainActivity : AppCompatActivity() {
             field7.text = ""
             field8.text = ""
             field9.text = ""
-            counterIsLocked = false
+            resetted = true
+            model.counterIsLocked = false
+        }
+
+        resetCounter.setOnClickListener {
+            resetted = true
+            model.xWinCounter = 0
+            model.oWinCounter = 0
+            xWins.text = "X's score: ${model.xWinCounter}"
+            oWins.text = "O's score: ${model.xWinCounter}"
         }
     }
 
@@ -110,22 +115,20 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     fun checkForState(){
-        if (model.gameState.toString() == "X_WINS") {
-            helpField.text = "X wins"
+        val state = model.checkForState()
+
+        if(state[0] == ""){
+            return
+        }else if(state[0] == "X_WINS"){
+            helpField.text = "X Wins!"
             Toast.makeText(this, "Press 'Restart' to play again", Toast.LENGTH_SHORT).show()
-            if(!counterIsLocked){
-                xWins.text = "X Wins: ${xWinCounter++}"
-                counterIsLocked = true
-            }
-        }else if(model.gameState.toString() == "O_WINS") {
-            helpField.text = "O wins"
+            xWins.text = "X's score: ${state[1]}"
+        }else if(state[0] == "O_WINS"){
+            helpField.text = "O Wins!"
             Toast.makeText(this, "Press 'Restart' to play again", Toast.LENGTH_SHORT).show()
-            if (!counterIsLocked){
-                oWins.text = "O Wins: ${oWinCounter++}"
-                counterIsLocked = true
-            }
-        }else if(model.gameState.toString() == "TIE_GAME"){
-            helpField.text = "Tie"
+            oWins.text = "O's score: ${state[1]}"
+        }else if(state[0] == "TIE_GAME"){
+            helpField.text = "Tie!"
             Toast.makeText(this, "Press 'Restart' to play again", Toast.LENGTH_SHORT).show()
         }
     }
