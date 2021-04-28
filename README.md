@@ -19,6 +19,7 @@ Android already seperates *view.xml* and *Controller.kt* for us. We chose to sep
 *view.xml* contains everything that is shown to the user. In this case it contains a table layout with multiple buttons.
 ## Controller
 *Controller.kt* binds *view.xml* and *Model.kt* together and handles the user input. It contains multiple onClick listeners.
-# Screencapture
-[MVC TicTacToe demonstration](https://drive.google.com/file/d/1KJ_IW1plwyqtnexsoL8CtJUzTBGQLuvM/view?usp=sharing)
+# Frontend
+[Screenshot auf Drive](https://user-images.githubusercontent.com/64471262/116379262-23004f80-a813-11eb-97f2-e4eee06a4860.jpg)
 
+[Screencapture auf Drive](https://drive.google.com/file/d/1nHmJr_bd70rokGqG8EdI3T17uQu4_5yo/view?usp=sharing)
